@@ -1,0 +1,235 @@
+============= Git é um controlador de versões =============
+Serve por exemplo para salvar uma edição que eu realizei e um outro terceiro realizou
+Mantendo salvo o código antigo, para ver onde surgiu o bug.
+Apartir de qual versão
+
+Tipos de controle de versão:
+- Centralizado:  
+é um sistema que salva as alterações e versões diretamente no servidor,
+Foi um sistema que surgiu nos anos 2000
+Por ele quando alguém realizava alteração para realizar o upload teria que se conectar com os dados de servidor
+Se quisesse baixar uma outra versão, precisava também dessa conexão
+Exemplo.: SVN
+
+Ponto negativo é que se o servidor perder o conteudo não tem backup
+
+- Distribuido:
+Git é distribuido nas maquinas que estão operando o repositorio
+O bom que 
+
+1-Navegação pelo histórico
+2-criação de branch
+3-Uma vez que o arquivo é adicionado o seu histórico é mantido
+
+===================== instalação ==========================
+
+windows
+
+Acessar- https://git-scm.com/download/win
+Next> Next > Next > finish
+
+Após instalado posso acessar o diretório, clicar com o botão direito do mouse e abrir a comandlinegit
+Ou acessar o cmd WINDOWS+R>cmd
+
+Ao executar o comando abaixo será exibido a versão do GIT
+C:\Users\lucas>git --version
+git version 2.28.0.windows.1
+
+
+Linux
+
+Acessar- https://git-scm.com/download/linux
+Exibira o comando para todas as distribuições Linux.
+
+Pode de outra forma sem acessar o site, digitar "git" no terminal ele exibirá. Que não existe e te mostrará o apt install do git
+Comando que utilizei:
+:~/sudo apt install git
+
+Noterminal execute  git --version para verificar a versão instalada
+
+
+Mac
+
+Acessar- https://git-scm.com/download/mac
+Abrir o que foi baixado, procurar o arquivo pkg e abrir
+
+Retornará que não é seguro esse arquivo.
+Pode ir em System preferences > security & privacy > general > clicar no cadeado na parte de baixo, 
+e autorizar que o arquivo faça alterações na maquinas> assim que for aplicado mostrará na aba geral a opção "open anyway"
+Volta na tela de instalação e só continuar até finalizar.
+
+Noterminal execute  git --version para verificar a versão instalada
+
+
+====================== Iniciando no Git ==========================
+
+Acesse area de trabalho
+Clique com botão direito do mouse, em seguida selecione a opção Git-bash-here
+
+Primeiro passo para mostrar de onde partiu as alterações pode configurar no git que baixo
+$ git config --global user.name "Lucas Pinheiro"
+$ git config --global user.email "lw.alves95@gmail.com"
+
+Esse comando mostra todas as configurações que adicionei acima e as que já vem por padrão:
+$ git config --all
+
+Acesse o diretório desejado:
+$ cd caminhododiretorio
+
+Crie um diretório
+$ mkdir nomedodiretorio
+
+Para iniciar um repositório git, execute:
+$ git init
+Initialized empty Git repository in C:/Users/lucas/projetogit2/.git/
+
+Se executar o comando dir -a no , mostrará uma master ao lado do caminho, indicando que esse será o repositório principal.
+e o arquivo .git
+
+Obs.: Não precisa ser um diretório vazio.
+
+Comando abaixo mostra informações sobre o arquivo:
+$ git status
+
+Exemplo: Criei um arquivo com o comando touch readme.txt
+$ touch readme.txt
+
+E ao executar dentro do diretório:
+$ git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        readme.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+
+No próprio comando ele já explica que precisamos adicionar com o git add nomedoarquivo, porem se tiver uma grande
+quantidade de arquivo, fica inviavel ficar fazendo 1 a 1, e você pode usar um dos 3 comandos a seguir:
+$ git add --all  
+$ git add -A
+$ git add .
+
+Exemplo da utilização do comando:
+$ git add readme.txt
+
+$ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   readme.txt
+		
+
+
+
+Após realizar edições no arquivo, você pode comentar a alteração utilizando o -m do git commit exemplo
+$ git comit -m "Adição de um teste"
+
+Se executo novamente o git status
+
+$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   readme.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+
+
+
+
+============== FUNCIONAMENTO DO GIT ======================
+-Working directory
+Arquivos locais, alterados, adicionados e excluidos
+
+Para que eles sigam para area onde os arquivos estão sendo preparados utilizamos o "git add"
+
+-Staging area
+Arquivos adicionados e preparados para serem versionados
+
+Para que eles sigam para area onde vao ser salvas as versões utilizamos o "git commit"
+
+-committed
+Arquivos salvos
+
+============== diferença entre arquivos DO GIT ======================
+Mostra as alterações realizadas que estão em sua area de trabalho local
+$ git diff
+
+Para exibir as diferenças dos arquivos que estão na area de transferência
+$ git diff --cached
+
+============== histórico/log DO GIT ======================
+Para verificar histórico de alterações:
+$ git log
+
+Para exibir somente as mensagens informando cada alterarção realizada:
+$ git log --oneline
+5e31801 (HEAD -> master) modificações
+bb8edc6 adicionado teste3
+5021596 criei novo teste
+03f65cc mais uma modificação
+bab5a97 Adição de um teste
+
+Após executar o git log, caso necessário você poderá voltar para versões anteriores os arquivos, caso tenha necessidade
+De validar quais arquivos foram, criados/modificados, a fim de restringir onde vai analisar. Facilitando o trabalho
+git checkout numerodaversao (exemplo: git checkout 5021596)
+
+Após realizar validações para voltar para versão atual. Pode inserir o comando:
+$ git checkout master
+
+============== Desfazer alterações DO GIT ======================
+
+Para desfazer a alteração de 1 arquivo:
+$git checkout nomedoarquivo
+
+Obs.: Esse comando não funciona para arquivos adicionados
+
+Caso você tenha editado varios arquivos e precise desfazer alterações.
+Pode executar o comando:
+
+$git reset --hard
+
+
+============== ignorando arquivos DO GIT ======================
+
+Quando você está em um projeto há arquivos que você não quer que subam para o git add
+Exemplo algo realacionado a alguma senha
+
+Deve criar um arquivo .gitignore
+Dentro dele você ditará regras de exibição.
+
+Um exemplo, eu criei um arquivo .bmp (imagem)
+Não quero que ele suba, abro o arquivo .gitignore e o insiro. ou coloco caso seja todos os arquivos .bmp
+*.bmp
+Salva o .gitignore
+
+Caso tenha duvidas, pode buscar no github o gitignore 
+
+
+Git ignore garante que arquivos não rastreados permaneçam não rastreados
+
+============== clonando repositorio arquivos DO GIT ======================
+
+Podemos copiar arquivos do seu projeto, para um novo diretório usando
+
+$ git clone diretorio-origem diretorio-destino
+
+Para clonar do github por exemplo, poe 
+
+
+=====================  =====================
+git clean -f
+ remover arquivos recem adicionados no projeto, uma vez que não possuem histórico e não podem
+ser removidos com git checkout ou git reset --hard.
+
+
+===================== GITHUB =====================
