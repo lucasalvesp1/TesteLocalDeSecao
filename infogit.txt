@@ -232,4 +232,7 @@ git clean -f
 ser removidos com git checkout ou git reset --hard.
 
 
-===================== GITHUB =====================
+===================== git push =====================
+$ git push
+Faz o envio das mudanças comitadas localmente para a origem da branch rastreada.
+
