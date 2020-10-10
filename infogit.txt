@@ -227,9 +227,12 @@ Para clonar do github por exemplo, poe
 
 
 =====================  =====================
-git clean -f
+git clean -f remove arquivos rastreados
+
  remover arquivos recem adicionados no projeto, uma vez que não possuem histórico e não podem
-ser removidos com git checkout ou git reset --hard.
+ser removidos com git checkout ou 
+
+git reset --hard apaga todos arquivos novos
 
 
 ===================== git push =====================
